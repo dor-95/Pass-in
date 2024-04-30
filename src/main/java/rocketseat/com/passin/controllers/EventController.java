@@ -15,16 +15,18 @@ import rocketseat.com.passin.services.EventService;
 public class EventController {
 
     private final EventService service;
+    private final EventService eventService;
+    private final AttendeeService attendeeService;
 
     @GetMapping("/{id}")
     public ResponseEntity<EventResponseDTO> getEvent(@PathVariable String id) {
-        EventResponseDTO event = this.service.getEventDetail(id);
+        EventResponseDTO event = this.eventService.getEventDetail(id);
         return ResponseEntity.ok(event);
     }
 
     @PostMapping
     public ResponseEntity<EventIdDTO> createEvent(@RequestBody EventRequestDTO body, UriComponentsBuilder uriComponentsBuilder) {
-        EventIdDTO eventIdDTO = this.service.createEvent(body);
+        EventIdDTO eventIdDTO = this.eventService.createEvent(body);
 
         var uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.eventId()).toUri();
 
