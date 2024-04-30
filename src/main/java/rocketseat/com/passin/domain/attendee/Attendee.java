@@ -19,7 +19,7 @@ public class Attendee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String ig;
+    private String id;
 
     @Column(nullable = false)
     private String name;
